@@ -1,7 +1,13 @@
 import webapp2
+import cgi
 
 from google.appengine.api import mail
 from google.appengine.api import users
+from google.appengine.ext.webapp.util import run_wsgi_app
+
+import MySQLdb
+import os
+
 
 CONTACT_PAGE_HTML = """
 <script type="text/javascript">
@@ -133,6 +139,7 @@ function Admin_Checkin(position)
   position.coords.longitude;	
   }
  circle.getBounds().contains( new google.maps.LatLng( position.coords.latitude, position.coords.longitude ) );
+
 </script>
 </body>
 </html>"""
@@ -147,4 +154,8 @@ class ContagePage(webapp2.RequestHandler):
 	def get(self):
 		self.response.write(CONTACT_PAGE_HTML)
 
-application = webapp2.WSGIApplication([('/contactus', ContagePage),], debug=True)
+class AdminCheck(webapp2.RequestHandler):
+	def get(self):
+		self.response.write(Admin_CHECK_IN_PAGE)
+
+application = webapp2.WSGIApplication([('/admincheck'),('/contactus', ContagePage),], debug=True)
