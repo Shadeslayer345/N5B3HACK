@@ -5,5 +5,27 @@ api_version: 1
 threadsafe: true
 
 handlers:
+
+#main page
+- url: /
+  static_files: HTML/main.html
+  upload: HTML/main.html
+
+#support/donation page
+- url: /support
+  static_files: HTML/support.html
+  upload: HTML/support.html
+
+#signup page (individual)
+- url: /signup
+  static_files: HTML/signup.html
+  upload: HTML/signup.html
+
+#all images
+- url: /images/(.*\.(gif|png|jpg|ico|bmp))
+  static_files: images/\1
+  upload: images/(.*\.(gif|png|jpg|ico|bmp))
+
+#everything that's not been defined
 - url: /.*
   script: main.application
