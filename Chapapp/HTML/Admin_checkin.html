@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo"></p>
+<button onclick="getLocation()">Checkin</button>
+<script>
+var x=document.getElementById("Admin_Checkin");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+function Admin_Checkin(position)
+  {
+  position.coords.latitude  
+  position.coords.longitude;	
+  }
+ circle.getBounds().contains( new google.maps.LatLng( position.coords.latitude, position.coords.longitude ) );
+</script>
+</body>
+</html>
