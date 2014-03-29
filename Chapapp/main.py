@@ -109,6 +109,34 @@ function evalid(){
 <table border="0" cellpadding="0" cellspacing="0">
 <tr valign="top">
 </form>"""
+
+
+Admin_CHECK_IN_PAGE = """
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo"></p>
+<button onclick="getLocation()">Checkin</button>
+<script>
+var x=document.getElementById("Admin_Checkin");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+function Admin_Checkin(position)
+  {
+  position.coords.latitude  
+  position.coords.longitude;	
+  }
+ circle.getBounds().contains( new google.maps.LatLng( position.coords.latitude, position.coords.longitude ) );
+</script>
+</body>
+</html>"""
+
 class MainPage(webapp2.RequestHandler):
 
     def get(self):
@@ -118,23 +146,5 @@ class MainPage(webapp2.RequestHandler):
 class ContagePage(webapp2.RequestHandler):
 	def get(self):
 		self.response.write(CONTACT_PAGE_HTML)
-
-class SendPage(webapp2.RequestHandler):
-	def post(self):
-	    user = users.get_current_user()
-	    if user is None:
-	      login_url = users.create_login_url(self.request.path)
-	      self.redirect(login_url)
-	      return
-	    to_addr = self.request.get("friend_email")
-	    if not mail.is_email_valid(to_addr):
-	        # Return an error message...
-	        pass
-
-	    message = mail.EmailMessage()
-	    message.sender = (cgi.escape(self.request.get('fname')))
-	    message.to = 'nsbefreshhu@gmail.com'
-		message.subject = (cgi.escape(self.request.get('subject')))
-	    message.body = (cgi.escape(self.request.get('message')))
 
 application = webapp2.WSGIApplication([('/hola', SendPage),('/hello', MainPage),('/contactus', ContagePage),], debug=True)
