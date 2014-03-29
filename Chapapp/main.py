@@ -147,4 +147,4 @@ class ContagePage(webapp2.RequestHandler):
 	def get(self):
 		self.response.write(CONTACT_PAGE_HTML)
 
-application = webapp2.WSGIApplication([('/hola', SendPage),('/hello', MainPage),('/contactus', ContagePage),], debug=True)
+application = webapp2.WSGIApplication([('/hello', MainPage),('/contactus', ContagePage),], debug=True)
